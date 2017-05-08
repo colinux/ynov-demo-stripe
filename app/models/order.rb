@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  has_one :book
+  belongs_to :book
 
   monetize :amount_cents
 

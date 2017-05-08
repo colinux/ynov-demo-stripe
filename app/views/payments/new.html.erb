@@ -1,0 +1,12 @@
+<h1>Récap achat du livre <%= @order.book.title %></h1>
+<%= form_tag order_payments_path(@order) do %>
+  Montant total: <%= humanized_money_with_symbol(@order.amount) %>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-name="Achat d'un livre"
+    data-email="<%= current_user.email %>"
+    data-description="Livre <%= @order.book.title %>"
+    data-amount="<%= @order.amount_cents %>"
+    data-currency="<%= @order.amount.currency %>"></script>
+<% end %>
