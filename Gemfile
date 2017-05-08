@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'money-rails', '~>1'
 gem 'stripe'
-gem 'dotenv'
+gem 'dotenv-rails', groups: [:development, :test]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
