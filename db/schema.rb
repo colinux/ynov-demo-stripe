@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507171852) do
+ActiveRecord::Schema.define(version: 20170508163451) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -18,6 +21,17 @@ ActiveRecord::Schema.define(version: 20170507171852) do
     t.string   "price_currency", default: "EUR", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "state"
+    t.integer  "book_id"
+    t.integer  "amount_cents",    default: 0,     null: false
+    t.string   "amount_currency", default: "EUR", null: false
+    t.json     "payment"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["book_id"], name: "index_orders_on_book_id", using: :btree
   end
 
 end
